@@ -15,11 +15,11 @@ addons:
   sonarcloud:
     organization: "isagiongo-github"
   token:
-    secure: c3f7b6bf7b53b4eed042e7bf91855c4b72f96e2e
+    secure: 8d56f33f537f93c28677e8ef04ef81439bf61959
 
 cache:
   directories:
   - '$HOME/.m2/repository'
   - '$HOME/.gradle'
 
-script: ./gradlew sonarqube -Dsonar.projectKey=isagiongo_api-meetups-java-girls -Dsonar.organization=isagiongo-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=c3f7b6bf7b53b4eed042e7bf91855c4b72f96e2e
+script: ./gradlew sonarqube -Dsonar.projectKey=isagiongo_api-meetups-java-girls -Dsonar.organization=isagiongo-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=8d56f33f537f93c28677e8ef04ef81439bf61959
