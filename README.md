@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/isagiongo/pragma-brewery.svg?branch=master)](https://travis-ci.org/isagiongo/pragma-brewery)
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=isagiongo_pragma-brewery&metric=alert_status)](https://sonarcloud.io/dashboard?id=isagiongo_pragma-brewery)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=isagiongo_pragma-brewery&metric=coverage)](https://sonarcloud.io/dashboard?id=isagiongo_pragma-brewery)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=isagiongo_pragma-brewery&metric=bugs)](https://sonarcloud.io/dashboard?id=isagiongo_pragma-brewery)
-[![Code smells](https://sonarcloud.io/api/project_badges/measure?project=isagiongo_pragma-brewery&metric=code_smells)](https://sonarcloud.io/dashboard?id=isagiongo_pragma-brewery)
+[![Build Status](https://travis-ci.org/isagiongo/api-meetups-java-girls.svg?branch=master)](https://travis-ci.org/isagiongo/api-meetups-java-girls)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=isagiongo_api-meetups-java-girls&metric=alert_status)](https://sonarcloud.io/dashboard?id=isagiongo_api-meetups-java-girls)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=isagiongo_api-meetups-java-girls&metric=coverage)](https://sonarcloud.io/dashboard?id=isagiongo_api-meetups-java-girls)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=isagiongo_api-meetups-java-girls&metric=bugs)](https://sonarcloud.io/dashboard?id=isagiongo_api-meetups-java-girls)
+[![Code smells](https://sonarcloud.io/api/project_badges/measure?project=isagiongo_api-meetups-java-girls&metric=code_smells)](https://sonarcloud.io/dashboard?id=isagiongo_api-meetups-java-girls)
 
 # API Meetups Devs Java Girsl Porto Alegre - v1
 CRUD para controle dos meetups realizados pelo Grupo Dev Java Girls de Porto Alegre.
