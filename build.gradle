@@ -2,6 +2,23 @@ plugins {
 	id 'org.springframework.boot' version '2.1.7.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'org.sonarqube' version '2.7'
+	id 'jacoco'
+}
+
+apply plugin: 'jacoco'
+
+jacoco {
+	toolVersion = '0.8.4'
+	reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.destination file("${buildDir}/jacocoHtml")
+	}
 }
 
 group = 'com.isagiongo'
@@ -27,4 +44,5 @@ dependencies {
 	compile 'io.springfox:springfox-swagger-ui:2.9.2'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.rest-assured:rest-assured:3.3.0'
 }
