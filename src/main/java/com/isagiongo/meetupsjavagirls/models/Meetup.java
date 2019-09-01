@@ -14,6 +14,8 @@ public class Meetup {
     private String id;
     private Integer edicao;
     private LocalDate dataRealizacao;
+    private Integer quantidadeParticipantes;
+    private String localRealizacao;
 
     @DBRef
     private List<Talk> talks;
@@ -44,5 +46,21 @@ public class Meetup {
 
     public void setTalks(List<Talk> talks) {
         this.talks = talks;
+    }
+
+    public Integer getQuantidadeParticipantes() {
+        return quantidadeParticipantes;
+    }
+
+    public void setQuantidadeParticipantes(Integer quantidadeParticipantes) {
+        this.quantidadeParticipantes = quantidadeParticipantes;
+    }
+
+    public String getLocalRealizacao() {
+        return localRealizacao;
+    }
+
+    public void setLocalRealizacao(String localRealizacao) {
+        this.localRealizacao = localRealizacao;
     }
 }

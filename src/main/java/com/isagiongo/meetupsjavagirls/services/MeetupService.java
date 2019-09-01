@@ -1,5 +1,6 @@
 package com.isagiongo.meetupsjavagirls.services;
 
+import com.isagiongo.meetupsjavagirls.MeetupNotFoundException;
 import com.isagiongo.meetupsjavagirls.models.Meetup;
 import com.isagiongo.meetupsjavagirls.repository.MeetupRepository;
 import com.isagiongo.meetupsjavagirls.repository.TalkRepository;
@@ -27,11 +28,11 @@ public class MeetupService {
         return meetupRepository.findAll(pageable);
     }
 
-    public Meetup findById(String id) throws Exception{
-        return meetupRepository.findById(id).orElseThrow(()-> new Exception("Meetup não encontrado."));
+    public Meetup findById(String id) {
+        return meetupRepository.findById(id).orElseThrow(()-> new MeetupNotFoundException("Meetup não encontrado."));
     }
 
-    public Meetup update(String id, Meetup meetup) throws Exception {
+    public Meetup update(String id, Meetup meetup) {
         Meetup meetupExistente = findById(id);
         meetupExistente.setDataRealizacao(meetup.getDataRealizacao());
         meetupExistente.setEdicao(meetup.getEdicao());
@@ -40,7 +41,7 @@ public class MeetupService {
         return meetupRepository.save(meetupExistente);
     }
 
-    public void delete(String id) throws Exception {
+    public void delete(String id) {
         Meetup meetup = findById(id);
         meetupRepository.delete(meetup);
     }
