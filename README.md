@@ -8,8 +8,8 @@
 CRUD para controle dos meetups realizados pelo Grupo Dev Java Girls de Porto Alegre.
 
 #### Para rodar a API localmente:
-1. Baixe o código fonte, extraia em um diretório e acesse a pasta do projeto (pragma-brewery). Abra o terminal / linha de comando a partir dessa pasta.
+1. Baixe o código fonte, extraia em um diretório e acesse a pasta do projeto (api-meetups-java-girls). Abra o terminal / linha de comando a partir dessa pasta.
 2. Execute o comando **_gradle build_**
-3. Execute o comando **_java -jar build/libs/pragma-brewery-0.0.1-SNAPSHOT.jar_**
+3. Execute o comando **_java -jar build/libs/api-meetups-java-girls-0.0.1-SNAPSHOT.jar_**
 
 
