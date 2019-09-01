@@ -23,13 +23,13 @@ public class MeetupControllerIntegrationTest {
         RestAssured.port = randomPort;
     }
 
-//    @Test
-//    public void deveRetornarOkAoBuscarTodosOsMeetups() {
-//        RestAssured
-//                .given()
-//                .contentType(ContentType.JSON)
-//                .get("/api/v1/meetups")
-//                .then()
-//                .statusCode(HttpStatus.OK.value());
-//    }
+    @Test
+    public void deveRetornarOkAoBuscarTodosOsMeetups() {
+        RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .get("/api/v1/meetups")
+                .then()
+                .statusCode(HttpStatus.OK.value());
+    }
 }
