@@ -1,5 +1,7 @@
 package com.isagiongo.meetupsjavagirls.controllers;
 
+import com.isagiongo.meetupsjavagirls.exceptions.MeetupEditionAlreadyExists;
+import com.isagiongo.meetupsjavagirls.exceptions.MeetupNotFoundException;
 import com.isagiongo.meetupsjavagirls.models.Meetup;
 import com.isagiongo.meetupsjavagirls.services.MeetupService;
 import org.springframework.data.domain.Page;
@@ -23,17 +25,17 @@ public class MeetupController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Meetup> buscaPorId(@PathVariable String id) throws Exception {
+    public ResponseEntity<Meetup> buscaPorId(@PathVariable String id) throws MeetupNotFoundException {
         return ResponseEntity.ok(meetupService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Meetup> cria(@RequestBody Meetup meetup) throws Exception {
+    public ResponseEntity<Meetup> cria(@RequestBody Meetup meetup) throws MeetupEditionAlreadyExists {
         return ResponseEntity.ok(meetupService.create(meetup));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Meetup> altera(@PathVariable String id, @RequestBody Meetup meetup) throws Exception {
+    public ResponseEntity<Meetup> altera(@PathVariable String id, @RequestBody Meetup meetup) throws MeetupNotFoundException {
         return ResponseEntity.ok(meetupService.update(id, meetup));
     }
 
