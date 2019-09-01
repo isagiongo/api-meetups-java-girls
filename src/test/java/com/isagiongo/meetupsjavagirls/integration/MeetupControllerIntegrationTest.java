@@ -21,7 +21,6 @@ public class MeetupControllerIntegrationTest {
     public void setUp() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = randomPort;
-
     }
 
     @Test
