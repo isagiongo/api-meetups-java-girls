@@ -15,7 +15,7 @@ addons:
   sonarcloud:
     organization: "isagiongo-github"
   token:
-    secure: c189457fac2b6991f231a7e82b8d5485500ef567
+    secure: c3f7b6bf7b53b4eed042e7bf91855c4b72f96e2e
 
 cache:
   directories:
