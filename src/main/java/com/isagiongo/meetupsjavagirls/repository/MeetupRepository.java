@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MeetupRepository extends MongoRepository<Meetup, String> {
 
+    Meetup findByEdicao(Integer edicao);
 }

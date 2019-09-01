@@ -1,6 +1,7 @@
 package com.isagiongo.meetupsjavagirls.services;
 
-import com.isagiongo.meetupsjavagirls.MeetupNotFoundException;
+import com.isagiongo.meetupsjavagirls.exceptions.MeetupEditionAlreadyExists;
+import com.isagiongo.meetupsjavagirls.exceptions.MeetupNotFoundException;
 import com.isagiongo.meetupsjavagirls.models.Meetup;
 import com.isagiongo.meetupsjavagirls.repository.MeetupRepository;
 import com.isagiongo.meetupsjavagirls.repository.TalkRepository;
@@ -20,8 +21,13 @@ public class MeetupService {
     }
 
     public Meetup create(Meetup meetup) {
-        talkRepository.saveAll(meetup.getTalks());
-        return meetupRepository.save(meetup);
+        Meetup meetupExistente = meetupRepository.findByEdicao(meetup.getEdicao());
+        if(meetupExistente != null) {
+            throw new MeetupEditionAlreadyExists("Essa edição do meetup já está cadastrada.");
+        } else {
+            talkRepository.saveAll(meetup.getTalks());
+            return meetupRepository.save(meetup);
+        }
     }
 
     public Page<Meetup> findAll(Pageable pageable) {
