@@ -3,6 +3,7 @@ package com.isagiongo.meetupsjavagirls.services;
 import com.isagiongo.meetupsjavagirls.exceptions.MeetupEditionAlreadyExists;
 import com.isagiongo.meetupsjavagirls.exceptions.MeetupNotFoundException;
 import com.isagiongo.meetupsjavagirls.models.Meetup;
+import com.isagiongo.meetupsjavagirls.models.dtos.MeetupRequestDTO;
 import com.isagiongo.meetupsjavagirls.repository.MeetupRepository;
 import com.isagiongo.meetupsjavagirls.repository.TalkRepository;
 import org.springframework.data.domain.Page;
@@ -20,7 +21,8 @@ public class MeetupService {
         this.talkRepository = talkRepository;
     }
 
-    public Meetup create(Meetup meetup) {
+    public Meetup create(MeetupRequestDTO meetupRequestDTO) {
+        Meetup meetup = new Meetup(meetupRequestDTO);
         Meetup meetupExistente = meetupRepository.findByEdicao(meetup.getEdicao());
         if(meetupExistente != null) {
             throw new MeetupEditionAlreadyExists("Essa edição do meetup já está cadastrada.");
@@ -38,7 +40,8 @@ public class MeetupService {
         return meetupRepository.findById(id).orElseThrow(()-> new MeetupNotFoundException("Meetup não encontrado."));
     }
 
-    public Meetup update(String id, Meetup meetup) {
+    public Meetup update(String id, MeetupRequestDTO meetupRequestDTO) {
+        Meetup meetup = new Meetup(meetupRequestDTO);
         Meetup meetupExistente = findById(id);
         meetupExistente.setDataRealizacao(meetup.getDataRealizacao());
         meetupExistente.setEdicao(meetup.getEdicao());

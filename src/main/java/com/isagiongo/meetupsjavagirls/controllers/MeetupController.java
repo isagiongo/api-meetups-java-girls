@@ -1,6 +1,7 @@
 package com.isagiongo.meetupsjavagirls.controllers;
 
 import com.isagiongo.meetupsjavagirls.models.Meetup;
+import com.isagiongo.meetupsjavagirls.models.dtos.MeetupRequestDTO;
 import com.isagiongo.meetupsjavagirls.services.MeetupService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,12 +29,12 @@ public class MeetupController {
     }
 
     @PostMapping
-    public ResponseEntity<Meetup> cria(@RequestBody Meetup meetup) {
+    public ResponseEntity<Meetup> cria(@RequestBody MeetupRequestDTO meetup) {
         return ResponseEntity.ok(meetupService.create(meetup));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Meetup> altera(@PathVariable String id, @RequestBody Meetup meetup) {
+    public ResponseEntity<Meetup> altera(@PathVariable String id, @RequestBody MeetupRequestDTO meetup) {
         return ResponseEntity.ok(meetupService.update(id, meetup));
     }
 
