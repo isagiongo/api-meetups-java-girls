@@ -28,6 +28,11 @@ public class MeetupController {
         return ResponseEntity.ok(meetupService.findById(id));
     }
 
+    @GetMapping("/edicao/{edicao}")
+    public ResponseEntity<Meetup> buscaPorEdicao(@PathVariable Integer edicao) {
+        return ResponseEntity.ok(meetupService.findByEdicao(edicao));
+    }
+
     @PostMapping
     public ResponseEntity<Meetup> cria(@RequestBody MeetupRequestDTO meetup) {
         return ResponseEntity.ok(meetupService.create(meetup));

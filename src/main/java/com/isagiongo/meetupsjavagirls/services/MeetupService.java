@@ -23,7 +23,7 @@ public class MeetupService {
 
     public Meetup create(MeetupRequestDTO meetupRequestDTO) {
         Meetup meetup = new Meetup(meetupRequestDTO);
-        Meetup meetupExistente = meetupRepository.findByEdicao(meetup.getEdicao());
+        Meetup meetupExistente = findByEdicao(meetup.getEdicao());
         if(meetupExistente != null) {
             throw new MeetupEditionAlreadyExists("Essa edição do meetup já está cadastrada.");
         } else {
@@ -38,6 +38,10 @@ public class MeetupService {
 
     public Meetup findById(String id) {
         return meetupRepository.findById(id).orElseThrow(()-> new MeetupNotFoundException("Meetup não encontrado."));
+    }
+
+    public Meetup findByEdicao(Integer edicao) {
+        return meetupRepository.findByEdicao(edicao).orElseThrow(()-> new MeetupNotFoundException("Meetup não encontrado."));
     }
 
     public Meetup update(String id, MeetupRequestDTO meetupRequestDTO) {
