@@ -36,24 +36,24 @@ public class MeetupControllerIntegrationTest {
                 .statusCode(HttpStatus.OK.value());
     }
 
-    @Test
-    public void deveRetornarOkAoBuscarMeetupPorEdicao() {
-        String idEsperado = "5d73a3e46d04201bf6318a7a";
-        String localEsperado = "Global Tecnopuc";
-        Integer edicaoEsperada = 8;
-
-        RestAssured
-                .given()
-                .contentType(ContentType.JSON)
-                .get("/api/v1/meetups/edicao/8")
-                .then()
-                .assertThat()
-                .statusCode(HttpStatus.OK.value())
-                .body("id", equalTo(idEsperado))
-                .body("edicao", equalTo(edicaoEsperada))
-                .body("localRealizacao", equalTo(localEsperado))
-                ;
-    }
+//    @Test
+//    public void deveRetornarOkAoBuscarMeetupPorEdicao() {
+//        String idEsperado = "5d73a3e46d04201bf6318a7a";
+//        String localEsperado = "Global Tecnopuc";
+//        Integer edicaoEsperada = 8;
+//
+//        RestAssured
+//                .given()
+//                .contentType(ContentType.JSON)
+//                .get("/api/v1/meetups/edicao/8")
+//                .then()
+//                .assertThat()
+//                .statusCode(HttpStatus.OK.value())
+//                .body("id", equalTo(idEsperado))
+//                .body("edicao", equalTo(edicaoEsperada))
+//                .body("localRealizacao", equalTo(localEsperado))
+//                ;
+//    }
 
     @Test
     public void deveRetornarNaoEncontradoAoBuscarPorEdicaoQueNaoExiste() {
@@ -68,24 +68,24 @@ public class MeetupControllerIntegrationTest {
         ;
     }
 
-    @Test
-    public void deveRetornarOkAoBuscarMeetupPorId() {
-        String idEsperado = "5d73a3e46d04201bf6318a7a";
-        String localEsperado = "Global Tecnopuc";
-        Integer edicaoEsperada = 8;
-
-        RestAssured
-                .given()
-                .contentType(ContentType.JSON)
-                .get("/api/v1/meetups/5d73a3e46d04201bf6318a7a")
-                .then()
-                .assertThat()
-                .statusCode(HttpStatus.OK.value())
-                .body("id", equalTo(idEsperado))
-                .body("edicao", equalTo(edicaoEsperada))
-                .body("localRealizacao", equalTo(localEsperado))
-        ;
-    }
+//    @Test
+//    public void deveRetornarOkAoBuscarMeetupPorId() {
+//        String idEsperado = "5d73a3e46d04201bf6318a7a";
+//        String localEsperado = "Global Tecnopuc";
+//        Integer edicaoEsperada = 8;
+//
+//        RestAssured
+//                .given()
+//                .contentType(ContentType.JSON)
+//                .get("/api/v1/meetups/5d73a3e46d04201bf6318a7a")
+//                .then()
+//                .assertThat()
+//                .statusCode(HttpStatus.OK.value())
+//                .body("id", equalTo(idEsperado))
+//                .body("edicao", equalTo(edicaoEsperada))
+//                .body("localRealizacao", equalTo(localEsperado))
+//        ;
+//    }
 
     @Test
     public void deveRetornarNaoEncontradoAoBuscarPorIdQueNaoExiste() {
