@@ -1,7 +1,5 @@
 package com.isagiongo.meetupsjavagirls.models.dtos;
 
-import com.isagiongo.meetupsjavagirls.enums.TipoEventoEnum;
-import com.isagiongo.meetupsjavagirls.models.Meetup;
 import com.isagiongo.meetupsjavagirls.models.Talk;
 
 import java.time.LocalDate;
