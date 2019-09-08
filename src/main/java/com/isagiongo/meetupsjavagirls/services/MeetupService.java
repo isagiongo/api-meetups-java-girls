@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MeetupService {
 
@@ -23,12 +25,13 @@ public class MeetupService {
 
     public Meetup create(MeetupRequestDTO meetupRequestDTO) {
         Meetup meetup = new Meetup(meetupRequestDTO);
-        Meetup meetupExistente = findByEdicao(meetup.getEdicao());
-        if(meetupExistente != null) {
-            throw new MeetupEditionAlreadyExists("Essa edição do meetup já está cadastrada.");
-        } else {
+        Optional<Meetup> meetupExistente = meetupRepository.findByEdicao(meetupRequestDTO.getEdicao());
+
+        if(!Optional.ofNullable(meetupExistente).isPresent()) {
             talkRepository.saveAll(meetup.getTalks());
             return meetupRepository.save(meetup);
+        } else {
+            throw new MeetupEditionAlreadyExists("Essa edição do meetup já está cadastrada.");
         }
     }
 
