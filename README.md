@@ -12,9 +12,9 @@ CRUD para controle dos meetups realizados pelo Grupo Dev Java Girls de Porto Ale
 2. Execute o comando **_gradle build_**
 3. Execute o comando **_java -jar build/libs/meetups-java-girls-0.0.1-SNAPSHOT.jar_**
 
-Testes unitários com JUnit
-Teste de Integraço com RestAssured
-Swagger
-Continuous Integration com Travis CI
-Análise de código com SonarCloud
+- Testes unitários com JUnit
+- Teste de Integração com RestAssured
+- Swagger
+- Continuous Integration com Travis CI
+- Análise de código com SonarCloud
 
