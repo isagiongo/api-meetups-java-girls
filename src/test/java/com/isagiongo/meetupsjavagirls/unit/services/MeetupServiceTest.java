@@ -77,7 +77,7 @@ public class MeetupServiceTest {
 
         Meetup meetupEsperado = new Meetup(meetupDTO);
 
-        when(meetupRepository.findByEdicao(1)).thenReturn(null);
+        when(meetupRepository.findByEdicao(1)).thenReturn(Optional.empty());
         meetupEsperado.setId("w2378fhe");
         meetupService.create(criaMeetup());
 

@@ -26,8 +26,7 @@ public class MeetupService {
     public Meetup create(MeetupRequestDTO meetupRequestDTO) {
         Meetup meetup = new Meetup(meetupRequestDTO);
         Optional<Meetup> meetupExistente = meetupRepository.findByEdicao(meetupRequestDTO.getEdicao());
-
-        if(!Optional.ofNullable(meetupExistente).isPresent()) {
+        if(!meetupExistente.isPresent()) {
             talkRepository.saveAll(meetup.getTalks());
             return meetupRepository.save(meetup);
         } else {
