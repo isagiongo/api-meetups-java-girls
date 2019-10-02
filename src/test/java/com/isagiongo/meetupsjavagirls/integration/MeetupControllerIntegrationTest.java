@@ -7,11 +7,8 @@ import com.isagiongo.meetupsjavagirls.repository.MeetupRepository;
 import com.isagiongo.meetupsjavagirls.repository.TalkRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,16 +44,10 @@ public class MeetupControllerIntegrationTest {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = randomPort;
         meetupRepository.deleteAll();
-        meetup = meetupRepository.save(insereMeetup());
-        talkRepository.saveAll(insereMeetup().getTalks());
-    }
-
-    @After
-    public void tearDown() {
-        meetupRepository.deleteAll();
         talkRepository.deleteAll();
+        meetup = meetupRepository.save(criaMeetup());
+        talkRepository.saveAll(criaMeetup().getTalks());
     }
-
 
     @Test
     public void deveRetornarOkAoBuscarTodosOsMeetups() {
@@ -70,9 +61,7 @@ public class MeetupControllerIntegrationTest {
 
     @Test
     public void deveRetornarOkAoBuscarMeetupPorEdicao() {
-        String localEsperado = "Tecnopuc";
-        Integer edicaoEsperada = 1;
-        Integer quantidadeParticipantesEsperada = 22;
+        Meetup meetupEsperado = criaMeetupEsperado();
 
         RestAssured
                 .given()
@@ -81,9 +70,9 @@ public class MeetupControllerIntegrationTest {
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value())
-                .body("edicao", equalTo(edicaoEsperada))
-                .body("localRealizacao", equalTo(localEsperado))
-                .body("quantidadeParticipantes", equalTo(quantidadeParticipantesEsperada))
+                .body("edicao", equalTo(meetupEsperado.getEdicao()))
+                .body("localRealizacao", equalTo(meetupEsperado.getLocalRealizacao()))
+                .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()))
                 ;
     }
 
@@ -102,9 +91,7 @@ public class MeetupControllerIntegrationTest {
 
     @Test
     public void deveRetornarOkAoBuscarMeetupPorId() {
-        String localEsperado = "Tecnopuc";
-        Integer edicaoEsperada = 1;
-        Integer quantidadeParticipantesEsperada = 22;
+        Meetup meetupEsperado = criaMeetupEsperado();
 
         RestAssured
                 .given()
@@ -113,9 +100,9 @@ public class MeetupControllerIntegrationTest {
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value())
-                .body("edicao", equalTo(edicaoEsperada))
-                .body("localRealizacao", equalTo(localEsperado))
-                .body("quantidadeParticipantes", equalTo(quantidadeParticipantesEsperada))
+                .body("edicao", equalTo(meetupEsperado.getEdicao()))
+                .body("localRealizacao", equalTo(meetupEsperado.getLocalRealizacao()))
+                .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()))
         ;
     }
 
@@ -132,7 +119,7 @@ public class MeetupControllerIntegrationTest {
         ;
     }
 
-    private Meetup insereMeetup() {
+    private Meetup criaMeetup() {
         LocalDate data = LocalDate.of(2018, Month.JUNE, 18);
 
         Talk talk1 = new Talk();
@@ -161,6 +148,15 @@ public class MeetupControllerIntegrationTest {
         meetupSalvo.setQuantidadeParticipantes(22);
 
         return meetupSalvo;
+    }
+
+    private Meetup criaMeetupEsperado() {
+        Meetup meetupEsperado = new Meetup();
+        meetupEsperado.setEdicao(1);
+        meetupEsperado.setLocalRealizacao("Tecnopuc");
+        meetupEsperado.setQuantidadeParticipantes(22);
+
+        return meetupEsperado;
     }
 
 }
