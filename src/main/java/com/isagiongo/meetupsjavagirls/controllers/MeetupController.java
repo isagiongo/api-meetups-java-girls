@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/api/v1/meetups")
 public class MeetupController {
@@ -35,7 +37,8 @@ public class MeetupController {
 
     @PostMapping
     public ResponseEntity<Meetup> cria(@RequestBody MeetupRequestDTO meetup) {
-        return ResponseEntity.ok(meetupService.create(meetup));
+        Meetup meetupSalvo = meetupService.create(meetup);
+        return ResponseEntity.created(URI.create("/" + meetupSalvo.getId())).body(meetupSalvo);
     }
 
     @PutMapping("/{id}")

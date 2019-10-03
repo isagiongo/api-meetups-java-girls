@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -50,13 +51,33 @@ public class MeetupControllerIntegrationTest {
     }
 
     @Test
+    public void deveRetornarCreatedAoInserirNovoMeetup() {
+        meetupRepository.deleteAll();
+        Meetup meetup = criaMeetup();
+        Meetup meetupEsperado = criaMeetupEsperado();
+
+        RestAssured
+                .given()
+                    .body(meetup)
+                    .contentType(ContentType.JSON)
+                .when()
+                    .post("/api/v1/meetups")
+                .then()
+                    .body("edicao", equalTo(meetupEsperado.getEdicao()))
+                    .body("localRealizacao", equalTo(meetupEsperado.getLocalRealizacao()))
+                    .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()))
+                    .statusCode(HttpStatus.CREATED.value());
+    }
+
+    @Test
     public void deveRetornarOkAoBuscarTodosOsMeetups() {
         RestAssured
                 .given()
-                .contentType(ContentType.JSON)
-                .get("/api/v1/meetups")
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get("/api/v1/meetups")
                 .then()
-                .statusCode(HttpStatus.OK.value());
+                    .statusCode(HttpStatus.OK.value());
     }
 
     @Test
@@ -65,14 +86,14 @@ public class MeetupControllerIntegrationTest {
 
         RestAssured
                 .given()
-                .contentType(ContentType.JSON)
-                .get("/api/v1/meetups/edicao/1")
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get("/api/v1/meetups/edicao/1")
                 .then()
-                .assertThat()
-                .statusCode(HttpStatus.OK.value())
-                .body("edicao", equalTo(meetupEsperado.getEdicao()))
-                .body("localRealizacao", equalTo(meetupEsperado.getLocalRealizacao()))
-                .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()))
+                    .statusCode(HttpStatus.OK.value())
+                    .body("edicao", equalTo(meetupEsperado.getEdicao()))
+                    .body("localRealizacao", equalTo(meetupEsperado.getLocalRealizacao()))
+                    .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()))
                 ;
     }
 
@@ -81,11 +102,11 @@ public class MeetupControllerIntegrationTest {
 
         RestAssured
                 .given()
-                .contentType(ContentType.JSON)
-                .get("/api/v1/meetups/edicao/6")
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get("/api/v1/meetups/edicao/6")
                 .then()
-                .assertThat()
-                .statusCode(HttpStatus.NOT_FOUND.value())
+                    .statusCode(HttpStatus.NOT_FOUND.value())
         ;
     }
 
@@ -95,14 +116,14 @@ public class MeetupControllerIntegrationTest {
 
         RestAssured
                 .given()
-                .contentType(ContentType.JSON)
-                .get("/api/v1/meetups/"+ meetup.getId())
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get("/api/v1/meetups/"+ meetup.getId())
                 .then()
-                .assertThat()
-                .statusCode(HttpStatus.OK.value())
-                .body("edicao", equalTo(meetupEsperado.getEdicao()))
-                .body("localRealizacao", equalTo(meetupEsperado.getLocalRealizacao()))
-                .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()))
+                    .statusCode(HttpStatus.OK.value())
+                    .body("edicao", equalTo(meetupEsperado.getEdicao()))
+                    .body("localRealizacao", equalTo(meetupEsperado.getLocalRealizacao()))
+                    .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()))
         ;
     }
 
@@ -111,29 +132,29 @@ public class MeetupControllerIntegrationTest {
 
         RestAssured
                 .given()
-                .contentType(ContentType.JSON)
-                .get("/api/v1/meetups/5d73a3e46d04201b")
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get("/api/v1/meetups/5d73a3e46d04201b")
                 .then()
-                .assertThat()
-                .statusCode(HttpStatus.NOT_FOUND.value())
+                    .statusCode(HttpStatus.NOT_FOUND.value())
         ;
     }
 
     private Meetup criaMeetup() {
-        LocalDate data = LocalDate.of(2018, Month.JUNE, 18);
+        LocalDate data = LocalDate.of(2018, Month.AUGUST, 18);
 
         Talk talk1 = new Talk();
-        talk1.setId("762hgsdb2");
-        talk1.setTipo(TipoEventoEnum.CODING_DOJO);
-        talk1.setTitulo("Testes unitários");
-        List<String> palestrantes = Arrays.asList("Marina Moreira", "Juliana Ferreira");
+        talk1.setId("5d953292436ffr1a6dad5f6e");
+        talk1.setTipo(TipoEventoEnum.TALK_TECNICA);
+        talk1.setTitulo("Desbravando estruturas funcionais em Java");
+        List<String> palestrantes = Arrays.asList("Catarina Nogueira", "Thayse Onofrio");
         talk1.setPalestrantes(palestrantes);
 
         Talk talk2 = new Talk();
-        talk2.setId("uiuier2287");
+        talk2.setId("5d953292436fbc1a6dad5f6e");
         talk2.setTipo(TipoEventoEnum.WORKSHOP);
-        talk2.setTitulo("API com Spring Boot");
-        List<String> palestrantes2 = Arrays.asList("Isa Giongo", "Ana Carolina Ferreira");
+        talk2.setTitulo("Consumindo API Rest com Angular");
+        List<String> palestrantes2 = Collections.singletonList("Karine Cardoso");
         talk2.setPalestrantes(palestrantes2);
 
         List<Talk> talks = new ArrayList<>();
@@ -141,7 +162,7 @@ public class MeetupControllerIntegrationTest {
         talks.add(talk2);
 
         Meetup meetupSalvo = new Meetup();
-        meetupSalvo.setLocalRealizacao("Tecnopuc");
+        meetupSalvo.setLocalRealizacao("Global Tecnopuc");
         meetupSalvo.setDataRealizacao(data);
         meetupSalvo.setEdicao(1);
         meetupSalvo.setTalks(talks);
@@ -151,9 +172,31 @@ public class MeetupControllerIntegrationTest {
     }
 
     private Meetup criaMeetupEsperado() {
+        LocalDate data = LocalDate.of(2018, Month.AUGUST, 18);
+
+        Talk talk1 = new Talk();
+        talk1.setId("5d953292436ffr1a6dad5f6e");
+        talk1.setTipo(TipoEventoEnum.TALK_TECNICA);
+        talk1.setTitulo("Desbravando estruturas funcionais em Java");
+        List<String> palestrantes = Arrays.asList("Catarina Nogueira", "Thayse Onofrio");
+        talk1.setPalestrantes(palestrantes);
+
+        Talk talk2 = new Talk();
+        talk2.setId("5d953292436fbc1a6dad5f6e");
+        talk2.setTipo(TipoEventoEnum.WORKSHOP);
+        talk2.setTitulo("Consumindo API Rest com Angular");
+        List<String> palestrantes2 = Collections.singletonList("Karine Cardoso");
+        talk2.setPalestrantes(palestrantes2);
+
+        List<Talk> talks = new ArrayList<>();
+        talks.add(talk1);
+        talks.add(talk2);
+
         Meetup meetupEsperado = new Meetup();
+        meetupEsperado.setLocalRealizacao("Global Tecnopuc");
+        meetupEsperado.setDataRealizacao(data);
         meetupEsperado.setEdicao(1);
-        meetupEsperado.setLocalRealizacao("Tecnopuc");
+        meetupEsperado.setTalks(talks);
         meetupEsperado.setQuantidadeParticipantes(22);
 
         return meetupEsperado;

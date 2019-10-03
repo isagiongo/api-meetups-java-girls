@@ -7,11 +7,16 @@ import java.util.List;
 
 public class MeetupRequestDTO {
 
+    private String id;
     private Integer edicao;
     private LocalDate dataRealizacao;
     private Integer quantidadeParticipantes;
     private String localRealizacao;
     private List<Talk> talks;
+
+    public String getId() {
+        return id;
+    }
 
     public Integer getEdicao() {
         return edicao;
