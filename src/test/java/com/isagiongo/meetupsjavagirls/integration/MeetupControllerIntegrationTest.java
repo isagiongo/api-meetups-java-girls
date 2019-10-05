@@ -63,10 +63,10 @@ public class MeetupControllerIntegrationTest {
                 .when()
                     .post("/api/v1/meetups")
                 .then()
+                    .statusCode(HttpStatus.CREATED.value())
                     .body("edicao", equalTo(meetupEsperado.getEdicao()))
                     .body("localRealizacao", equalTo(meetupEsperado.getLocalRealizacao()))
-                    .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()))
-                    .statusCode(HttpStatus.CREATED.value());
+                    .body("quantidadeParticipantes", equalTo(meetupEsperado.getQuantidadeParticipantes()));
     }
 
     @Test
