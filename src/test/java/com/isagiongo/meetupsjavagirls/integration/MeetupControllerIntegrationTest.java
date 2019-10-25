@@ -141,6 +141,30 @@ public class MeetupControllerIntegrationTest {
         ;
     }
 
+    @Test
+    public void deveRetornarOkAoDeletarMeetup(){
+        RestAssured
+                .given()
+                    .contentType(ContentType.JSON)
+                .when()
+                    .delete("/api/v1/meetups/edicao/1")
+                .then()
+                    .statusCode(HttpStatus.OK.value())
+        ;
+    }
+
+    @Test
+    public void deveRetornarNoContentAoTentarDeletarMeetupNaoExistente(){
+        RestAssured
+                .given()
+                    .contentType(ContentType.JSON)
+                .when()
+                    .delete("/api/v1/meetups/edicao/15")
+                .then()
+                    .statusCode(HttpStatus.NO_CONTENT.value())
+        ;
+    }
+
     private Meetup criaMeetup() {
         LocalDate data = LocalDate.of(2018, Month.AUGUST, 18);
 
