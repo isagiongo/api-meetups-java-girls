@@ -9,6 +9,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -106,7 +107,7 @@ public class MeetupControllerIntegrationTest {
                 .when()
                     .get("/api/v1/meetups/edicao/6")
                 .then()
-                    .statusCode(HttpStatus.NOT_FOUND.value())
+                    .statusCode(HttpStatus.NO_CONTENT.value())
         ;
     }
 
@@ -136,7 +137,7 @@ public class MeetupControllerIntegrationTest {
                 .when()
                     .get("/api/v1/meetups/5d73a3e46d04201b")
                 .then()
-                    .statusCode(HttpStatus.NOT_FOUND.value())
+                    .statusCode(HttpStatus.NO_CONTENT.value())
         ;
     }
 
