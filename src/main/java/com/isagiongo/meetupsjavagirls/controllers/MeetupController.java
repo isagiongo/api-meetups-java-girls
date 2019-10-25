@@ -46,4 +46,10 @@ public class MeetupController {
         return ResponseEntity.ok(meetupService.update(id, meetup));
     }
 
+    @DeleteMapping("/edicao/{edicao}")
+    public ResponseEntity<Void> deleta(@PathVariable Integer edicao) {
+        meetupService.deleteByEdition(edicao);
+        return ResponseEntity.ok().build();
+    }
+
 }

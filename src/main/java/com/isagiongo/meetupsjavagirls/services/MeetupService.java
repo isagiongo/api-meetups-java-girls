@@ -60,4 +60,9 @@ public class MeetupService {
         Meetup meetup = findById(id);
         meetupRepository.delete(meetup);
     }
+
+    public void deleteByEdition(Integer edicao) {
+        Meetup meetup = findByEdicao(edicao);
+        meetupRepository.deleteByEdicao(meetup.getEdicao());
+    }
 }

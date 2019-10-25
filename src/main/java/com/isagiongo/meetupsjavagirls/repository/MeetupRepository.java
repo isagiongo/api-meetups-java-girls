@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface MeetupRepository extends MongoRepository<Meetup, String> {
 
     Optional<Meetup> findByEdicao(Integer edicao);
+
+    Optional<Meetup> deleteByEdicao(Integer edicao);
 }
