@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api/v1/meetups")
+@RequestMapping("/api/v2/meetups")
 public class MeetupController {
 
     private final MeetupService meetupService;
