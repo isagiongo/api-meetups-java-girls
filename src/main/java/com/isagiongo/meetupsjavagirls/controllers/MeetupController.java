@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api/v2/meetups")
+@RequestMapping("/api/v1/meetups")
 public class MeetupController {
 
     private final MeetupService meetupService;
@@ -21,6 +21,7 @@ public class MeetupController {
     }
 
     @GetMapping
+    @CrossOrigin
     public ResponseEntity<Page<Meetup>> buscaTodos(Pageable pageable) {
         return ResponseEntity.ok(meetupService.findAll(pageable));
     }
