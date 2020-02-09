@@ -18,6 +18,10 @@ public class MeetupRequestDTO {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Integer getEdicao() {
         return edicao;
     }
