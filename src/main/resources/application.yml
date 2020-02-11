@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: meetup-java-girls
+  data:
+    mongodb.host: mongodb
+    mongodb.port: 27017
+    mongodb.uri: mongodb://localhost/test
+    mongo.repositories.enabled: true

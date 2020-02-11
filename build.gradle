@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 	id 'org.sonarqube' version '2.7'
 	id 'jacoco'
+	id 'com.google.cloud.tools.jib' version '1.8.0'
 }
 
 apply plugin: 'jacoco'
@@ -40,6 +41,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile 'io.springfox:springfox-swagger2:2.9.2'
 	compile 'io.springfox:springfox-swagger-ui:2.9.2'
+	compile 'org.mongodb:mongodb-driver-core:3.8.2'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.rest-assured:rest-assured:3.3.0'

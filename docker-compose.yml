@@ -1,0 +1,21 @@
+version: "3"
+services:
+  mongodb:
+    image: tutum/mongodb:3.0
+    ports:
+      - "27017:27017"
+    environment:
+      - AUTH=no
+    hostname: mongodb
+
+  app:
+    image: isagiongo/api-meetups-java-girls
+    ports:
+      - 8080:8080
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    environment:
+      SPRING_APPLICATION_NAME: meetup-java-girls
+      SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/test
