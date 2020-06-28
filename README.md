@@ -11,7 +11,9 @@ CRUD para controle dos meetups realizados pelo Grupo Dev Java Girls de Porto Ale
 1. Baixe o código fonte, extraia em um diretório e acesse a pasta do projeto (api-meetups-java-girls). Abra o terminal / linha de comando a partir dessa pasta.
 2. Execute o comando **_gradle build_**
 3. Execute o comando **_java -jar build/libs/meetups-java-girls-0.0.1-SNAPSHOT.jar_**
-
+4. A Api depende do mongoDB para salvar e buscar seus registros. 
+    4.1. Baixe a imagem docker do mongo -> docker pull tutum/mongodb
+    4.2. Execute ela -> docker run -d -p 27017:27017 -p 28017:28017 -e AUTH=no tutum/mongodb    
 - Testes unitários com JUnit
 - Teste de Integração com RestAssured
 - Swagger
